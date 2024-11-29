@@ -1,0 +1,112 @@
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.spinner > svg {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+iframe#webpack-dev-server-client-overlay {
+  display: none;
+}
+
+.MuiButtonBase-root.Mui-disabled {
+  opacity: 0.5;
+}
+
+.loader {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 25px;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  background-color: #333;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+.slideItem {
+  place-items: center !important;
+}
+
+.customScrollbar {
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 16px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 16px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    opacity: 0.8;
+  }
+}
+
+.lightTheme {
+  .customScrollbar {
+    &::-webkit-scrollbar-track {
+      background-color: #f2f2f2;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #bcbcbc;
+    }
+  }
+}
+
+.darkTheme {
+  .customScrollbar {
+    &::-webkit-scrollbar-track {
+      background-color: #333;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #666;
+    }
+  }
+}
+
+.underline:hover {
+  text-decoration: underline;
+}
