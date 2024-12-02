@@ -1,4 +1,4 @@
-import { Box, IconButton, InputAdornment, Stack, TextField, Popover, Paper, Typography, Alert } from '@mui/material';
+import { Box, IconButton, InputAdornment, Stack, TextField, Popover, Paper, Typography, Alert, Button } from '@mui/material';
 import { File, FileAudio, FilePdf, FileVideo, FileZip, LinkSimple, PaperPlaneTilt, Smiley, X } from 'phosphor-react';
 import { useTheme, styled } from '@mui/material/styles';
 import React, { useEffect, useRef, useState } from 'react';
@@ -179,7 +179,7 @@ const ChatInput = ({
         }
       }}
       fullWidth
-      placeholder="Write a message..."
+      placeholder="Message to everyone ..."
       variant="filled"
       multiline
       maxRows={3}
@@ -225,23 +225,23 @@ const ChatInput = ({
             })}
           </div>
         ),
-        endAdornment: (
-          <Stack sx={{ position: 'absolute', bottom: '22px', right: '10px' }}>
-            <InputAdornment position="end">
-              <IconButton
-                onClick={event => {
-                  setAnchorElPicker(inputRef.current);
-                }}
-              >
-                <Smiley />
-              </IconButton>
-              <IconButton component="label">
-                <LinkSimple />
-                <VisuallyHiddenInput type="file" multiple onChange={onChangeUpload} />
-              </IconButton>
-            </InputAdornment>
-          </Stack>
-        ),
+        // endAdornment: (
+        //   <Stack sx={{ position: 'absolute', bottom: '22px', right: '10px' }}>
+        //     <InputAdornment position="end">
+        //       <IconButton
+        //         onClick={event => {
+        //           setAnchorElPicker(inputRef.current);
+        //         }}
+        //       >
+        //         <Smiley />
+        //       </IconButton>
+        //       <IconButton component="label">
+        //         <LinkSimple />
+        //         <VisuallyHiddenInput type="file" multiple onChange={onChangeUpload} />
+        //       </IconButton>
+        //     </InputAdornment>
+        //   </Stack>
+        // ),
       }}
       // onKeyPress={ev => {
       //   if (ev.key === 'Enter' && !ev.shiftKey) {
@@ -689,7 +689,26 @@ const ChatFooter = ({ currentChannel, setMessages }) => {
       >
         {quotesMessage && <ReplyMessageBox quotesMessage={quotesMessage} />}
         {editMessage && <EditMessageBox editMessage={editMessage} />}
-
+        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Button>
+            <Typography sx={{ fontWeight: 700, fontSize: '16px', color: '#e9e9e9' }}>
+              Everyone {'>'}
+            </Typography>
+          </Button>
+          <Stack sx={{ alignContent: 'center', flexDirection: 'row' }}>
+            <IconButton component="label">
+              <LinkSimple />
+              <VisuallyHiddenInput type="file" multiple onChange={onChangeUpload} />
+            </IconButton>
+            <IconButton
+              onClick={event => {
+                setAnchorElPicker(inputRef.current);
+              }}
+            >
+              <Smiley />
+            </IconButton>
+          </Stack>
+        </Box>
         <Stack direction="row" alignItems={'center'} spacing={isMobile ? 1 : 3}>
           <Stack sx={{ width: 'calc(100% - 68px)' }}>
             {/* --------------------emoji picker-------------------- */}

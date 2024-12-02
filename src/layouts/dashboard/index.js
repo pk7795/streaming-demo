@@ -42,7 +42,7 @@ const DashboardLayout = () => {
       }
     };
 
-    eventSource.onerror = err => {};
+    eventSource.onerror = err => { };
 
     return () => {
       eventSource.close();
@@ -100,7 +100,7 @@ const DashboardLayout = () => {
         <PlatformDialog />
       ) : (
         <Stack direction="row" sx={{ width: '100%', height: '100%', overflow: 'hidden' }}>
-          {isDesktop && <SideNav />}
+          {/* {isDesktop && <SideNav />} */}
 
           <Outlet />
         </Stack>

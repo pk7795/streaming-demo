@@ -515,7 +515,7 @@ const Channels = () => {
             </SimpleBarStyle>
           </Stack>
         </Stack>
-      </Box>
+      </Box >
     </>
   );
 };

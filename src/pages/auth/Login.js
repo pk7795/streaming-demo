@@ -3,6 +3,7 @@ import CustomApiUrlForm from './CustomApiUrlForm';
 import { Link, Link as RouterLink } from 'react-router-dom';
 import LoginWallet from './LoginWallet';
 import LoginEmail from './LoginEmail';
+import LoginByToken from './LoginByToken';
 
 // ----------------------------------------------------------------------
 
@@ -10,7 +11,7 @@ export default function LoginPage() {
   return (
     <>
       <Stack spacing={2} sx={{ mb: 5, position: 'relative' }}>
-        <Typography variant="h4">Login to Ermis</Typography>
+        <Typography variant="h4">Login to Streaming Demo</Typography>
 
         {/* <Stack direction="row" spacing={0.5}>
           <Typography variant="body2" sx={{ fontSize: '14px' }}>
@@ -22,7 +23,8 @@ export default function LoginPage() {
         </Stack> */}
       </Stack>
       {/* <LoginEmail /> */}
-      <LoginWallet />
+      {/* <LoginWallet /> */}
+      <LoginByToken />
       <CustomApiUrlForm />
     </>
   );

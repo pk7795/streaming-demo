@@ -52,11 +52,11 @@ export default function Attachments({ attachments }) {
     let width = '';
     let height = '';
     if (attachmentsImageAndVideo.length === 1) {
-      width = '100%';
-      height = '100%';
-    } else if (attachmentsImageAndVideo.length === 2) {
-      width = '100%';
+      width = '50%';
       height = '50%';
+    } else if (attachmentsImageAndVideo.length === 2) {
+      width = '50%';
+      height = '25%';
     } else if (attachmentsImageAndVideo.length === 3) {
       if (index === 0) {
         width = '100%';
@@ -145,10 +145,10 @@ export default function Attachments({ attachments }) {
   };
 
   return (
-    <Box sx={{ width: '400px' }}>
-      <Stack direction="row" justifyContent="flex-end">
+    <Box sx={{}}>
+      {/* <Stack direction="row" justifyContent="flex-end">
         {renderAttachmentsImageAndVideo()}
-      </Stack>
+      </Stack> */}
 
       <SlideshowLightbox
         theme="lightbox"
@@ -170,18 +170,19 @@ export default function Attachments({ attachments }) {
         lightboxImgClass="slideItem"
       />
 
-      {attachmentsOther.length > 0 && (
+      {attachments.length > 0 && (
         <List>
-          {attachmentsOther.map((item, index) => {
-            const lastItem = index === attachmentsOther.length - 1;
+          {attachments.map((item, index) => {
+            const lastItem = index === attachments.length - 1;
             return (
               <ListItem key={index} disablePadding sx={{ marginBottom: lastItem ? '0px' : '10px' }}>
-                <Paper elevation={3} sx={{ borderRadius: '12px', width: '100%' }}>
-                  <ListItemButton onClick={() => downloadFile(item.asset_url, item.title)}>
-                    {item.mime_type && <ListItemIcon>{getIconAttachment(item.mime_type, 24)}</ListItemIcon>}
-                    <ListItemText primary={item.title} secondary={getSizeInMb(item.file_size)} />
-                  </ListItemButton>
-                </Paper>
+                <ListItemButton onClick={() => downloadFile(item.asset_url, item.title)}>
+                  {item.mime_type && <ListItemIcon>{getIconAttachment(item.mime_type, 24)}</ListItemIcon>}
+                  <ListItemText primary={item.title} secondary={getSizeInMb(item.file_size)} sx={{
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }} />
+                </ListItemButton>
               </ListItem>
             );
           })}

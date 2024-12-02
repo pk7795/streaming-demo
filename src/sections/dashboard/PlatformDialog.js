@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Dialog, DialogContent, Slide, Box, Typography, Paper, Stack, Card, CardContent, Button } from '@mui/material';
 import Logo from '../../assets/Images/ermis.svg';
 import LogoSdk from '../../assets/Images/logo-sdk.webp';
@@ -41,7 +41,9 @@ const PlatformDialog = () => {
       dispatch(SetChainCurrent(chainErmis));
     }
   };
-
+  useEffect(() => {
+    dispatch(SetChainCurrent(CHAIN_ID.Ermis));
+  }, []);
   return (
     <Dialog
       open={true}

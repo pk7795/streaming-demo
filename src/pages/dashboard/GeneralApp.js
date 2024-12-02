@@ -22,8 +22,17 @@ import { LoadingSpinner } from '../../components/animate';
 import { useParams, useNavigate } from 'react-router-dom';
 import { splitChannelId } from '../../utils/commons';
 import { ConnectCurrentChannel } from '../../redux/slices/channel';
-import { DEFAULT_PATH } from '../../config';
 import ChannelNotFound from '../../sections/dashboard/ChannelNotFound';
+import WhepViewer from '../stream/WhepViewer';
+import { DEFAULT_PATH, DOMAIN_APP } from '../../config';
+import { ClientEvents } from '../../constants/events-const';
+import {
+  FetchChannels,
+} from '../../redux/slices/channel';
+import { FetchAllMembers } from '../../redux/slices/member';
+import { UpdateTab } from '../../redux/slices/app';
+import { TabType } from '../../constants/commons-const';
+import { LocalStorageKey } from '../../constants/localStorage-const';
 
 const GeneralApp = () => {
   const dispatch = useDispatch();
@@ -49,22 +58,75 @@ const GeneralApp = () => {
       }
     }
   }, [dispatch, id, all_members]);
+  useEffect(() => {
+    if (projectCurrent && all_members.length) {
+      dispatch(FetchChannels());
+    }
+  }, [projectCurrent, all_members]);
 
+  useEffect(() => {
+    if (projectCurrent) {
+      dispatch(FetchAllMembers());
+    }
+  }, [projectCurrent]);
+
+  useEffect(() => {
+    const currentState = window.history.state;
+    const { channelId, channelType, type } = currentState;
+    const defaultChannel = window.localStorage.getItem(LocalStorageKey.ChannelId);
+
+    if (defaultChannel) {
+      navigate(`${DEFAULT_PATH}/${defaultChannel}`);
+    }
+    if (channelId && channelType && type) {
+      switch (type) {
+        case ClientEvents.MessageNew:
+          navigate(`${DEFAULT_PATH}/${channelType}:${channelId}`);
+          break;
+        case ClientEvents.ChannelCreated:
+          dispatch(UpdateTab({ tab: TabType.Invite }));
+          break;
+        case ClientEvents.ReactionNew:
+          navigate(`${DEFAULT_PATH}/${channelType}:${channelId}`);
+          break;
+        case ClientEvents.MemberAdded:
+          navigate(`${DEFAULT_PATH}/${channelType}:${channelId}`);
+          break;
+        case ClientEvents.MemberUnBanned:
+          navigate(`${DEFAULT_PATH}/${channelType}:${channelId}`);
+          break;
+        case ClientEvents.MessageUpdated:
+          navigate(`${DEFAULT_PATH}/${channelType}:${channelId}`);
+          break;
+        default:
+          break;
+      }
+
+      window.history.replaceState({}, `${DOMAIN_APP}${DEFAULT_PATH}`);
+    }
+
+    return () => {
+      window.history.replaceState({}, `${DOMAIN_APP}${DEFAULT_PATH}`);
+    };
+  }, []);
   return (
     <>
       <Stack
         className={theme.palette.mode === 'light' ? 'lightTheme' : 'darkTheme'}
         direction="row"
-        sx={{ width: 'calc(100% - 100px)', height: '100%' }}
+        sx={{ width: '100%', height: '100%' }}
       >
-        <ClientsTabPanel />
+        {/* <ClientsTabPanel /> */}
+        <WhepViewer />
         <Box
           sx={{
             height: '100%',
-            width: sideBar.open ? 'calc(100% - 640px )' : 'calc(100% - 320px )',
+            width: '25%',
             backgroundColor: theme.palette.mode === 'light' ? '#FFF' : theme.palette.background.paper,
             overflow: 'hidden',
             position: 'relative',
+            borderWidth: 1,
+            borderColor: '#E0E0E0',
           }}
         >
           {loadingChannel && (

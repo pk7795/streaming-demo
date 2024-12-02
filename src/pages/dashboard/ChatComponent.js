@@ -226,144 +226,144 @@ const MessageList = ({
   let lastDate = null;
 
   return (
-    <Box sx={{ padding: isMobile ? '15px' : '40px 90px' }}>
-      <Stack spacing={3} sx={{ position: 'relative' }}>
+    <Box sx={{ padding: isMobile ? '15px' : '40px 15px' }}>
+      <Stack spacing={1} sx={{ position: 'relative' }}>
         {messages.length
           ? messages.map((el, idx) => {
-              const isNewUser = el.user.id !== lastUserId;
-              lastUserId = el.user.id;
-              const messageType = el.type;
-              const isMyMessage = el.user.id === user_id;
-              const memberInfo = getMemberInfo(el.user.id, all_members);
-              const name = memberInfo ? formatString(memberInfo.name) : formatString(el.user.id);
-              const isMessageDeleted = el.deleted_at;
+            const isNewUser = el.user.id !== lastUserId;
+            lastUserId = el.user.id;
+            const messageType = el.type;
+            const isMyMessage = el.user.id === user_id;
+            const memberInfo = getMemberInfo(el.user.id, all_members);
+            const name = memberInfo ? formatString(memberInfo.name) : formatString(el.user.id);
+            const isMessageDeleted = el.deleted_at;
 
-              const currentDate = dayjs(el.created_at).startOf('day');
-              const label = getDateLabel(currentDate, lastDate);
+            const currentDate = dayjs(el.created_at).startOf('day');
+            const label = getDateLabel(currentDate, lastDate);
 
-              // Cập nhật lastDate để sử dụng cho tin nhắn tiếp theo
-              if (label) {
-                lastDate = currentDate;
-              }
+            // Cập nhật lastDate để sử dụng cho tin nhắn tiếp theo
+            if (label) {
+              lastDate = currentDate;
+            }
 
-              if (messageType === MessageType.System) {
-                return (
-                  <StyledMessage
-                    direction="row"
-                    justifyContent="center"
-                    key={el.id}
-                    ref={element => setMessageRef(el.id, element, idx)}
-                  >
-                    <Typography variant="body2" color={theme.palette.grey[500]} sx={{ textAlign: 'center' }}>
-                      {convertMessageSystem(el.text, all_members, isDirect)}
-                    </Typography>
-                  </StyledMessage>
-                );
-              } else {
-                return (
-                  <StyledMessage
-                    direction="row"
-                    justifyContent={isMyMessage ? 'end' : 'start'}
-                    flexWrap="wrap"
-                    key={el.id}
-                    className={isMyMessage ? 'myMessage' : ''}
-                    ref={element => setMessageRef(el.id, element, idx)}
-                    sx={{ position: 'relative', maxWidth: '100%', paddingTop: isNewUser ? '24px' : '5px' }}
-                  >
-                    {highlightMsg === el.id && (
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          top: 0,
-                          left: '50%',
-                          transform: 'translateX(-50%)',
-                          width: 'calc(100% + 80px)',
-                          height: '100%',
-                          backgroundColor: theme.palette.action.selected,
-                        }}
-                      />
-                    )}
-
-                    {label && (
-                      <Stack direction="row" justifyContent="center" sx={{ width: '100%', margin: '10px 0', order: 1 }}>
-                        <Chip label={label} />
-                      </Stack>
-                    )}
-
-                    <Stack
+            if (messageType === MessageType.System) {
+              return (
+                <StyledMessage
+                  direction="row"
+                  justifyContent="center"
+                  key={el.id}
+                  ref={element => setMessageRef(el.id, element, idx)}
+                >
+                  <Typography variant="body2" color={theme.palette.grey[500]} sx={{ textAlign: 'center' }}>
+                    {convertMessageSystem(el.text, all_members, isDirect)}
+                  </Typography>
+                </StyledMessage>
+              );
+            } else {
+              return (
+                <StyledMessage
+                  direction="row"
+                  justifyContent={isMyMessage ? 'end' : 'start'}
+                  flexWrap="wrap"
+                  key={el.id}
+                  className={isMyMessage ? 'myMessage' : ''}
+                  ref={element => setMessageRef(el.id, element, idx)}
+                  sx={{ position: 'relative', maxWidth: '100%', paddingTop: isNewUser ? '24px' : '0px' }}
+                >
+                  {highlightMsg === el.id && (
+                    <Box
                       sx={{
-                        padding: isMyMessage ? '0 0 0 15px' : '0 15px 0 0',
-                        order: isMyMessage ? 3 : 2,
-                        width: '47px',
-                        visibility: isNewUser ? 'visible' : 'hidden',
+                        position: 'absolute',
+                        top: 0,
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: 'calc(100% + 80px)',
+                        height: '100%',
+                        backgroundColor: theme.palette.action.selected,
+                      }}
+                    />
+                  )}
+
+                  {label && (
+                    <Stack direction="row" justifyContent="center" sx={{ width: '100%', margin: '10px 0', order: 1 }}>
+                      <Chip label={label} />
+                    </Stack>
+                  )}
+
+                  <Stack
+                    sx={{
+                      padding: isMyMessage ? '0 0 0 15px' : '0 15px 0 0',
+                      order: isMyMessage ? 3 : 2,
+                      width: '47px',
+                      visibility: isNewUser ? 'visible' : 'hidden',
+                    }}
+                  >
+                    <MemberAvatar member={memberInfo} width={32} height={32} />
+                  </Stack>
+
+                  <Stack sx={{ order: isMyMessage ? 2 : 3, width: 'calc(100%)' }}>
+                    <Stack
+                      direction="row"
+                      sx={{
+                        display: isNewUser ? 'flex' : 'none',
+                        justifyContent: isMyMessage ? 'right' : 'left',
+                        alignItems: 'center',
+                        margin: '0 -5px',
+                        position: 'relative',
+                        zIndex: 1,
                       }}
                     >
-                      <MemberAvatar member={memberInfo} width={32} height={32} />
-                    </Stack>
-
-                    <Stack sx={{ order: isMyMessage ? 2 : 3, width: 'calc(100% - 47px)' }}>
-                      <Stack
-                        direction="row"
+                      <Typography
+                        variant="body1"
                         sx={{
-                          display: isNewUser ? 'flex' : 'none',
-                          justifyContent: isMyMessage ? 'right' : 'left',
-                          alignItems: 'center',
-                          margin: '0 -5px',
-                          position: 'relative',
-                          zIndex: 1,
+                          color: theme.palette.text,
+                          fontSize: 14,
+                          fontWeight: 700,
+                          padding: '0 5px',
                         }}
                       >
-                        <Typography
-                          variant="body1"
-                          sx={{
-                            color: theme.palette.text,
-                            fontSize: 14,
-                            fontWeight: 700,
-                            padding: '0 5px',
-                          }}
-                        >
-                          {name}
-                        </Typography>
-                      </Stack>
-
-                      {renderMessage(el)}
-
-                      {el.latest_reactions && !isMessageDeleted && (
-                        <ReactionsMessage isMyMessage={isMyMessage} message={el} />
-                      )}
-
-                      {el.status === 'error' && (
-                        <Stack direction="row" justifyContent="flex-end" sx={{ marginTop: '5px' }}>
-                          <Stack direction="row" alignItems="center">
-                            <WarningCircle size={18} weight="fill" color={theme.palette.error.main} />
-                            <span style={{ fontSize: '12px', color: theme.palette.error.main }}>
-                              &nbsp;Message sending failed&nbsp;&#8226;&nbsp;
-                            </span>
-                            <span
-                              style={{
-                                fontSize: '12px',
-                                color: theme.palette.error.main,
-                                cursor: 'pointer',
-                                textDecoration: 'underline',
-                              }}
-                              onClick={() => onRetrySendMessage(el)}
-                            >
-                              Try again
-                            </span>
-                          </Stack>
-                        </Stack>
-                      )}
+                        {name}
+                      </Typography>
                     </Stack>
 
-                    {lastReadMessageId === el.id && (
-                      <Stack direction="row" justifyContent="center" sx={{ width: '100%', margin: '10px 0', order: 4 }}>
-                        <Chip label="Unread message" />
+                    {renderMessage(el)}
+
+                    {el.latest_reactions && !isMessageDeleted && (
+                      <ReactionsMessage isMyMessage={isMyMessage} message={el} />
+                    )}
+
+                    {el.status === 'error' && (
+                      <Stack direction="row" justifyContent="flex-end" sx={{ marginTop: '5px' }}>
+                        <Stack direction="row" alignItems="center">
+                          <WarningCircle size={18} weight="fill" color={theme.palette.error.main} />
+                          <span style={{ fontSize: '12px', color: theme.palette.error.main }}>
+                            &nbsp;Message sending failed&nbsp;&#8226;&nbsp;
+                          </span>
+                          <span
+                            style={{
+                              fontSize: '12px',
+                              color: theme.palette.error.main,
+                              cursor: 'pointer',
+                              textDecoration: 'underline',
+                            }}
+                            onClick={() => onRetrySendMessage(el)}
+                          >
+                            Try again
+                          </span>
+                        </Stack>
                       </Stack>
                     )}
-                  </StyledMessage>
-                );
-              }
-            })
+                  </Stack>
+
+                  {lastReadMessageId === el.id && (
+                    <Stack direction="row" justifyContent="center" sx={{ width: '100%', margin: '10px 0', order: 4 }}>
+                      <Chip label="Unread message" />
+                    </Stack>
+                  )}
+                </StyledMessage>
+              );
+            }
+          })
           : null}
         <ReadBy />
       </Stack>

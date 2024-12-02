@@ -12,6 +12,12 @@ export const BASE_URL = apiURL;
 export const BASE_URL_WALLET = process.env.REACT_APP_API_URL_WALLET;
 export const PROJECT_ID = process.env.REACT_APP_PROJECT_ID;
 export const API_KEY = process.env.REACT_APP_API_KEY;
+export const USERID = process.env.REACT_APP_USERID;
+export const TOKEN = process.env.REACT_APP_TOKEN;
+export const REFRESH_TOKEN = process.env.REACT_APP_REFRESH_TOKEN;
+export const CHANNELID = process.env.REACT_APP_CHANNELID;
+export const WHEP_DOMAIN = process.env.REACT_APP_WHEP_DOMAIN;
+export const WHEP_TOKEN = process.env.REACT_APP_WHEP_TOKEN;
 
 export const defaultSettings = {
   themeMode: 'light',

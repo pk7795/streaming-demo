@@ -437,7 +437,7 @@ const AttachmentMsg = ({ el, menu }) => {
               : theme.palette.background.neutral,
           borderRadius: 1.5,
           position: 'relative',
-          maxWidth: '75%',
+          maxWidth: '100%',
         }}
       >
         <Stack spacing={1}>
