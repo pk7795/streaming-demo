@@ -250,22 +250,22 @@ const WhepViewer = ({ showChat }) => {
                             alignItems: 'center',
                         }}
                     >
-                        <AntSwitch defaultChecked={theme.palette.mode === 'dark'} onChange={onToggleMode} />
+                        <AntSwitch defaultChecked={theme.palette.mode === 'dark'} onChange={onToggleMode} sx={{ marginRight: 8 }} />
                         {/* Nút bật/tắt mic */}
-                        <Button
+                        {/* <Button
                             onClick={toggleMic}
                             sx={{ backgroundColor: isMicOn ? 'green' : 'gray', color: '#fff', marginRight: 2 }}
                         >
                             {isMicOn ? "Mic On" : "Mic Off"}
-                        </Button>
+                        </Button> */}
 
                         {/* Nút bật/tắt camera */}
-                        <Button
+                        {/* <Button
                             onClick={toggleCamera}
                             sx={{ backgroundColor: isCameraOn ? 'green' : 'gray', color: '#fff', marginRight: 2 }}
                         >
                             {isCameraOn ? "Camera On" : "Camera Off"}
-                        </Button>
+                        </Button> */}
 
                         {/* Thanh điều chỉnh âm lượng */}
                         <Box display="flex" alignItems="center">

@@ -117,7 +117,9 @@ const GeneralApp = () => {
         sx={{ width: '100%', height: '100%' }}
       >
         {/* <ClientsTabPanel /> */}
-        <WhepViewer showChat={() => setIsStreaming(true)} />
+        <WhepViewer showChat={() => {
+          setIsStreaming(true)
+        }} />
         <Box
           sx={{
             height: '100%',

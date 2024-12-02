@@ -10,8 +10,8 @@ import LoginByToken from './LoginByToken';
 export default function LoginPage() {
   return (
     <>
-      <Stack spacing={2} sx={{ mb: 5, position: 'relative' }}>
-        <Typography variant="h4">Login to Streaming Demo</Typography>
+      <Stack spacing={2} sx={{ mb: 5, position: 'relative', justifyContent: 'center', alignItems: 'center' }}>
+        <Typography variant="h4">Live Streaming Demo</Typography>
 
         {/* <Stack direction="row" spacing={0.5}>
           <Typography variant="body2" sx={{ fontSize: '14px' }}>
@@ -25,7 +25,7 @@ export default function LoginPage() {
       {/* <LoginEmail /> */}
       {/* <LoginWallet /> */}
       <LoginByToken />
-      <CustomApiUrlForm />
+      {/* <CustomApiUrlForm /> */}
     </>
   );
 }

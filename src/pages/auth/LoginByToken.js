@@ -90,7 +90,7 @@ export default function LoginByToken() {
           marginTop: 8
         }}
       >
-        Login
+        Start Watching
       </LoadingButton>
     </FormProvider>
   );
