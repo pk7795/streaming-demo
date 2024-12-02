@@ -95,7 +95,7 @@ const ChatHeader = ({ currentChannel }) => {
           <Stack spacing={1} direction="row" alignItems="center">
             <Stack spacing={0.2}>
               <Typography variant="h6" sx={{ color: theme.palette.text.primary }}>
-                Chats
+                Chats  {!isDirect ? `(${Object.values(currentChannel.state.members).length})` : <>&nbsp;</>}
                 <Typography
                   variant="caption"
                   sx={{
@@ -105,7 +105,7 @@ const ChatHeader = ({ currentChannel }) => {
                     fontWeight: 400,
                   }}
                 >
-                  {!isDirect ? `${Object.values(currentChannel.state.members).length} members` : <>&nbsp;</>}
+                  {/* {!isDirect ? `${Object.values(currentChannel.state.members).length} members` : <>&nbsp;</>} */}""
                 </Typography>
               </Typography>
             </Stack>

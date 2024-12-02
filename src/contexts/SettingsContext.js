@@ -11,32 +11,32 @@ const initialState = {
   ...defaultSettings,
 
   // Mode
-  onToggleMode: () => {},
-  onChangeMode: () => {},
+  onToggleMode: () => { },
+  onChangeMode: () => { },
 
   // Direction
-  onToggleDirection: () => {},
-  onChangeDirection: () => {},
-  onChangeDirectionByLang: () => {},
+  onToggleDirection: () => { },
+  onChangeDirection: () => { },
+  onChangeDirectionByLang: () => { },
 
   // Layout
-  onToggleLayout: () => {},
-  onChangeLayout: () => {},
+  onToggleLayout: () => { },
+  onChangeLayout: () => { },
 
   // Contrast
-  onToggleContrast: () => {},
-  onChangeContrast: () => {},
+  onToggleContrast: () => { },
+  onChangeContrast: () => { },
 
   // Color
-  onChangeColor: () => {},
+  onChangeColor: () => { },
   setColor: defaultPreset,
   colorOption: [],
 
   // Stretch
-  onToggleStretch: () => {},
+  onToggleStretch: () => { },
 
   // Reset
-  onResetSetting: () => {},
+  onResetSetting: () => { },
 };
 
 const SettingsContext = createContext(initialState);
@@ -203,6 +203,6 @@ const SettingsProvider = ({ children }) => {
   );
 };
 
-export {SettingsContext};
+export { SettingsContext };
 
 export default SettingsProvider;

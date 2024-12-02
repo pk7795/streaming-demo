@@ -9,10 +9,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import useSettings from '../../hooks/useSettings';
 import { LogoutUser } from '../../redux/slices/auth';
 
-const WhepViewer = () => {
+const WhepViewer = ({ showChat }) => {
     const dispatch = useDispatch();
 
-    const { onToggleMode } = useSettings();
+    const { onToggleMode, themeMode } = useSettings();
     const theme = useTheme();
     const isMobile = useResponsive('between', 'md', 'xs', 'sm');
     const videoRef = useRef(null);
@@ -84,7 +84,8 @@ const WhepViewer = () => {
             whepClientRef.current = whep;
 
             setIsStreaming(true);
-            setLoadingChannel(false);
+            // setLoadingChannel(false);
+            showChat();
             console.log("Viewing started successfully!");
 
         } catch (error) {
@@ -133,6 +134,10 @@ const WhepViewer = () => {
                 console.error("Failed to access media devices:", error);
             }
         };
+        if (themeMode === 'light') {
+            onToggleMode();
+        }
+        start();
 
         // setLoadingChannel(true);
         initMediaStream();
@@ -278,17 +283,17 @@ const WhepViewer = () => {
                             />
                         </Box>
                     </Box>
-                    <Box>
-                        <Button sx={{ backgroundColor: theme.palette.primary.main, alignItems: 'center', justifyContent: 'center' }} disabled={isStreaming} onClick={start}>
+                    {/* <Box>
+                        <Button sx={{ backgroundColor: theme.palette.primary.main, alignItems: 'center', justifyContent: 'center' }} onClick={start}>
                             <Typography variant="body1" sx={{ fontWeight: 700, fontSize: '16px', marginBottom: '5px', color: '#fff' }}>
-                                Watch Live Stream
+                                {isStreaming ? "Stop Live Stream" : "Watch Live Stream"}
                             </Typography>
                         </Button>
-                    </Box>
+                    </Box> */}
                     <Box>
                         <Button sx={{ backgroundColor: 'red', alignItems: 'center', justifyContent: 'center' }} onClick={onLogout}>
                             <Typography variant="body1" sx={{ fontWeight: 700, fontSize: '16px', marginBottom: '5px', color: '#fff' }}>
-                                Leave Meeting
+                                Stop Live Stream
                             </Typography>
                         </Button>
                     </Box>
