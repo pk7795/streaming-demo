@@ -293,7 +293,7 @@ const WhepViewer = ({ showChat }) => {
                     <Box>
                         <Button sx={{ backgroundColor: 'red', alignItems: 'center', justifyContent: 'center' }} onClick={onLogout}>
                             <Typography variant="body1" sx={{ fontWeight: 700, fontSize: '16px', marginBottom: '5px', color: '#fff' }}>
-                                Stop Live Stream
+                                Leave Live Stream
                             </Typography>
                         </Button>
                     </Box>
