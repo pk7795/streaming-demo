@@ -189,7 +189,7 @@ const WhepViewer = ({ showChat }) => {
                 >
                     <Stack spacing={.2}>
                         <Typography variant="h6" sx={{ color: theme.palette.text.primary }}>
-                            Streaming Demo
+                            Live Streaming Demo
                         </Typography>
                     </Stack>
                 </Stack>
