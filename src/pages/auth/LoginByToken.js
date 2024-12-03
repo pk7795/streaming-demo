@@ -58,7 +58,7 @@ export default function LoginByToken() {
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing={3}>
+      <Stack spacing={3} >
         <RHFTextField name="user_id" label="User ID" />
         <RHFTextField name="token" label="Token" />
         <RHFTextField name="refresh_token" label="Refresh Token" />

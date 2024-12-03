@@ -8,7 +8,7 @@ import useResponsive from '../../hooks/useResponsive';
 import { useDispatch, useSelector } from 'react-redux';
 import useSettings from '../../hooks/useSettings';
 import { LogoutUser } from '../../redux/slices/auth';
-
+import tryhard from './tryhard.mp4';
 const WhepViewer = ({ showChat }) => {
     const dispatch = useDispatch();
 
@@ -204,13 +204,19 @@ const WhepViewer = ({ showChat }) => {
 
             <Box sx={{
                 position: 'relative',
-                backgroundColor: 'transparent !important',
-                p: 2
+                backgroundColor: 'transparent',
+                p: 2,
+                width: '100%', height: 'auto',
+                zIndex: 1,
+                maxHeight: 'calc(100vh - 182px)'
+
             }}>
-                <video ref={videoRef} autoPlay playsInline controls style={{ width: "100%", marginTop: "10px" }} />
+                <video ref={videoRef} autoPlay playsInline controls muted={false} style={{ width: "100%", marginTop: "10px" }} >
+                </video>
                 {/* <ShakaPlayer ref={videoRef} autoPlay playsInline volume={20} style={{ width: "100%", marginTop: "10px" }}
-                // src="https://assets.codepen.io/6093409/river.mp4"
-                controls
+                    src="https://www.youtube.com/watch?v=5MgBikgcWnY"
+                    controls
+                    type="video/mp4"
                 /> */}
             </Box>
             <Box
@@ -218,6 +224,7 @@ const WhepViewer = ({ showChat }) => {
                     position: 'relative',
                     backgroundColor: 'transparent !important',
                     height: '120px',
+                    zIndex: 0,
                 }}
             >
                 <Box
@@ -268,7 +275,7 @@ const WhepViewer = ({ showChat }) => {
                         </Button> */}
 
                         {/* Thanh điều chỉnh âm lượng */}
-                        <Box display="flex" alignItems="center">
+                        {/* <Box display="flex" alignItems="center">
                             <Typography variant="body2" sx={{ marginRight: 1 }}>
                                 Volume
                             </Typography>
@@ -281,7 +288,7 @@ const WhepViewer = ({ showChat }) => {
                                 onChange={handleVolumeChange}
                                 style={{ width: '100px' }}
                             />
-                        </Box>
+                        </Box> */}
                     </Box>
                     {/* <Box>
                         <Button sx={{ backgroundColor: theme.palette.primary.main, alignItems: 'center', justifyContent: 'center' }} onClick={start}>

@@ -1,4 +1,4 @@
-import { Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import CustomApiUrlForm from './CustomApiUrlForm';
 import { Link, Link as RouterLink } from 'react-router-dom';
 import LoginWallet from './LoginWallet';
@@ -9,7 +9,7 @@ import LoginByToken from './LoginByToken';
 
 export default function LoginPage() {
   return (
-    <>
+    <Box>
       <Stack spacing={2} sx={{ mb: 5, position: 'relative', justifyContent: 'center', alignItems: 'center' }}>
         <Typography variant="h4">Live Streaming Demo</Typography>
 
@@ -26,6 +26,6 @@ export default function LoginPage() {
       {/* <LoginWallet /> */}
       <LoginByToken />
       {/* <CustomApiUrlForm /> */}
-    </>
+    </Box>
   );
 }

@@ -15,8 +15,8 @@ const AuthLayout = () => {
 
   return (
     <>
-      <Container sx={{ mt: 5 }} maxWidth="sm">
-        <Stack spacing={5}>
+      <Container sx={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} maxWidth="sm">
+        <Stack spacing={5} sx={{ width: '100%', overflowY: 'auto', flexGrow: 1 }} p={2}>
           <Stack sx={{ width: '100%' }} direction="column" alignItems={'center'}>
             <img style={{ height: 120, width: 120 }} src={Logo} alt="Logo" />
           </Stack>
