@@ -24,7 +24,7 @@ const WhepViewer: React.FC = () => {
 
         const whep = new WHEPClient();
 
-        const url = "https://belo.chat:3030/whep/endpoint";
+        const url = "https://media-webrtc.ermis.network/whep/endpoint";
 
         try {
             await whep.view(pc, url, token);
