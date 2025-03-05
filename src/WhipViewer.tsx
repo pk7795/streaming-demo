@@ -40,7 +40,7 @@ const WhipViewer: React.FC = () => {
             }
 
             const whip = new WHIPClient();
-            await whip.publish(pc, 'https://media-dev.ermis.network/whip/endpoint', token);
+            await whip.publish(pc, 'https://belo.chat:3032/whip?app=live&stream=test&token=123');
 
             setWhipInstance(whip);
             setStreamInstance(stream);

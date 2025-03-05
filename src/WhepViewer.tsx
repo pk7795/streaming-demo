@@ -24,10 +24,10 @@ const WhepViewer: React.FC = () => {
 
         const whep = new WHEPClient();
 
-        const url = "https://media-webrtc.ermis.network/whep/endpoint";
+        const url = "https://belo.chat:3032/whep?app=live&stream=test&token=123";
 
         try {
-            await whep.view(pc, url, token);
+            await whep.view(pc, url);
             whepClientRef.current = whep;
             setIsStreaming(true);
             console.log("Viewing started successfully!");
